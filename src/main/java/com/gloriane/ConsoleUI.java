@@ -13,6 +13,7 @@ public static void printMenu() {
     System.out.println("2. Search by Name");
     System.out.println("3. Display All Contacts");
     System.out.println("0. Exit");
+    System.out.print("Choose an option: ");
 }
 
     public static void main(String[] args) {
@@ -42,23 +43,36 @@ public static void printMenu() {
         }
     }
 
+
     public static void addContact() {
         // TODO: Implement add contact functionality
-        System.out.println("Add contact feature not implemented yet.");
+        System.out.println("Enter name: ");
+        String name = scanner.nextLine();
+        System.out.println("Enter phone number: ");
+        String phoneNumber = scanner.nextLine();
 
+        boolean added = ContactDAO.addContact(name, phoneNumber);
+        if (added) {
+            System.out.println("Contact added successfully.");
+        } else {
+            System.out.println("Failed to add contact. Contact with this name already exists.");
+        }
     }
 
     public static void searchByName() {
         // TODO: Implement search by name functionality
-        System.out.println("Search by name feature not implemented yet.");
+        System.out.println("Enter name to search: ");
+        String name = scanner.nextLine();
+        ContactDAO.searchByName(name);  // Call static method directly
     }
 
-    public static void displayAllContacts() {
+    public static void displayAllContacts(){
         // TODO: Implement display all contacts functionality
-        System.out.println("Display all contacts feature not implemented yet.");
+        ContactDAO.displayAllContacts();  // Call static method directly
+        }
     }
 
 
 
 
-}
+
