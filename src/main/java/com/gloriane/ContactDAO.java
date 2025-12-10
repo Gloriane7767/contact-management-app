@@ -156,5 +156,24 @@ public class ContactDAO {
         }
         return false;
     }
+    public static void sortContacts() {
+        // Simple bubble sort implementation
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = 0; j < size - i - 1; j++) {
+                int pipeIndex1 = contacts[j].indexOf('|');
+                String name1 = contacts[j].substring(0, pipeIndex1);
+
+                int pipeIndex2 = contacts[j + 1].indexOf('|');
+                String name2 = contacts[j + 1].substring(0, pipeIndex2);
+
+                if (name1.compareToIgnoreCase(name2) > 0) {
+                    // Swap contacts
+                    String temp = contacts[j];
+                    contacts[j] = contacts[j + 1];
+                    contacts[j + 1] = temp;
+                }
+            }
+        }
+    }
 }
 

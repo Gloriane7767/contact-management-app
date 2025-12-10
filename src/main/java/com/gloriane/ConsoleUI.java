@@ -13,6 +13,10 @@ public static void printMenu() {
     System.out.println("2. Search by Name");
     System.out.println("3. Search by Phone Number");
     System.out.println("4. Display All Contacts");
+    System.out.println("5. Delete Contact");
+    System.out.println("6. Update Contact");
+    System.out.println("7. Sort Contacts");
+    System.out.println("8. Sort Contacts");
     System.out.println("0. Exit");
     System.out.print("Choose an option: ");
 }
@@ -36,6 +40,15 @@ public static void printMenu() {
                     break;
                 case "4":
                     displayAllContacts();
+                    break;
+                case "5":
+                    deleteContact();
+                    break;
+                case "6":
+                    updateContact();
+                    break;
+                case "7":
+                    sortContacts();
                     break;
                 case "0":
                     running = false;
@@ -77,11 +90,38 @@ public static void printMenu() {
     }
 
     public static void displayAllContacts(){
-        // TODO: Implement display all contacts functionality
         ContactDAO.displayAllContacts();  // Call static method directly
+        }
+
+        public static void deleteContact() {
+        System.out.println("Enter name of contact to delete: ");
+        String name = scanner.nextLine();
+        boolean deleted = ContactDAO.deleteContact(name);
+        if (deleted) {
+            System.out.println("Contact deleted successfully.");
+        } else {
+            System.out.println("Contact not found.");
         }
     }
 
+public static void updateContact() {
+        System.out.println("Enter name of contact to update: ");
+        String name = scanner.nextLine();
+        System.out.println("Enter new phone number: ");
+        String newPhoneNumber = scanner.nextLine();
+        boolean updated = ContactDAO.updateContact(name, newPhoneNumber);
+        if (updated) {
+            System.out.println("Contact updated successfully.");
+        } else {
+            System.out.println("Contact not found.");
+        }
+    }
+
+    public static void sortContacts() {
+        ContactDAO.sortContacts();
+        System.out.println("Contacts sorted successfully.");
+    }
+}
 
 
 
