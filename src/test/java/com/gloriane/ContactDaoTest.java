@@ -33,4 +33,3 @@ class ContactDaoTest {
 
 }
 
-    // @Test case for searching a contact by phone number
