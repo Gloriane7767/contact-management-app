@@ -11,7 +11,8 @@ public static void printMenu() {
     System.out.println(" === Contact Management ===");
     System.out.println("1. Add Contact");
     System.out.println("2. Search by Name");
-    System.out.println("3. Display All Contacts");
+    System.out.println("3. Search by Phone Number");
+    System.out.println("4. Display All Contacts");
     System.out.println("0. Exit");
     System.out.print("Choose an option: ");
 }
@@ -31,6 +32,9 @@ public static void printMenu() {
                     searchByName();
                     break;
                 case "3":
+                    searchByNumber();
+                    break;
+                case "4":
                     displayAllContacts();
                     break;
                 case "0":
@@ -64,6 +68,12 @@ public static void printMenu() {
         System.out.println("Enter name to search: ");
         String name = scanner.nextLine();
         ContactDAO.searchByName(name);  // Call static method directly
+    }
+
+    public static void searchByNumber() {
+        System.out.println("Enter phone number to search: ");
+        String phoneNumber = scanner.nextLine();
+        ContactDAO.searchByNumber(phoneNumber);
     }
 
     public static void displayAllContacts(){

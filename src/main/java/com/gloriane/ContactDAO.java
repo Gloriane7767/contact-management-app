@@ -64,6 +64,28 @@ public class ContactDAO {
         }
     }
 
+    public static void searchByNumber(String phoneNumber) {
+        if (phoneNumber.isEmpty()) {
+            System.out.println("Search phone number cannot be empty.");
+            return;
+        }
+
+        boolean found = false;
+        for (int i = 0; i < size; i++) {
+            int pipeIndex = contacts[i].indexOf('|');
+            String contactName = contacts[i].substring(0, pipeIndex);
+            String contactPhone = contacts[i].substring(pipeIndex + 1);
+            if (contactPhone.equals(phoneNumber)) {
+                System.out.println("Found: " + contactName + " | " + contactPhone);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No contacts found with the phone number: " + phoneNumber);
+        }
+    }
+
     // Display all contacts using loops
     public static void displayAllContacts() {
         if (size == 0) {
