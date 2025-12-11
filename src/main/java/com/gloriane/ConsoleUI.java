@@ -91,16 +91,7 @@ public static void printMenu() {
     }
 
 public static void updateContact() {
-        System.out.println("Enter name of contact to update: ");
-        String name = scanner.nextLine();
-        System.out.println("Enter new phone number: ");
-        String newPhoneNumber = scanner.nextLine();
-        boolean updated = ContactDAO.updateContact(name, newPhoneNumber);
-        if (updated) {
-            System.out.println("Contact updated successfully.");
-        } else {
-            System.out.println("Contact not found.");
-        }
+        ContactDAO.updateContact(scanner);
     }
 
     public static void sortContacts() {

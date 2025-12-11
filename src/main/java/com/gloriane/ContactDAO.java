@@ -117,6 +117,7 @@ public class ContactDAO {
             System.out.println("No contacts to display.");
             return;
         }
+
         System.out.println("All Contacts:");
         for (int i = 0; i < size; i++) {
             // Find the pipe character position
@@ -163,23 +164,78 @@ public class ContactDAO {
         return true;
     }
 
-    // Update contact using loops
-    public static boolean updateContact(String name, String newPhoneNumber) {
-        if (name.isEmpty() || newPhoneNumber.isEmpty()) {
-            System.out.println("Name and new phone number cannot be empty.");
-            return false;
+    // Update contact with option to choose what to update
+    // A method signature: nametag,input and output via scanner or boolean result
+    public static void updateContact(java.util.Scanner scanner) {
+        System.out.print("Enter current name of contact to update: ");
+        String currentName = scanner.nextLine();
+        
+        if (currentName.isEmpty()) {
+            System.out.println("Name cannot be empty.");
+            return;
         }
-
-        for (int i = 0; i < size; i++) {
+        
+        // Find the contact first
+        int contactIndex = -1; // Start: "I don't know where the contact is"
+        for (int i = 0; i < size; i++) { // Search through all contacts
             int pipeIndex = contacts[i].indexOf('|');
-            String contactName = contacts[i].substring(0, pipeIndex);
-
-            if (contactName.equalsIgnoreCase(name)) {
-                contacts[i] = contactName + "|" + newPhoneNumber;
-                return true;
+            String contactName = contacts[i].substring(0, pipeIndex); // Extract contact name from position i
+            if (contactName.equalsIgnoreCase(currentName)) {  // Is this the contact we're looking for?
+                contactIndex = i; // "Found it at position i!"
+                break; // Stop searching
             }
         }
-        return false;
+
+        // After the loop:
+        if (contactIndex == -1) {   // Still -1 = never found the contact
+            System.out.println("Contact not found.");
+            return;
+        }
+        /*
+        } else {
+        // contactIndex = 0, 1, 2, etc. = found at that position
+         // Now we can update contacts[contactIndex]
+            }
+         */
+
+        // Show current contact details
+        int pipeIndex = contacts[contactIndex].indexOf('|');
+        String name = contacts[contactIndex].substring(0, pipeIndex);
+        String phone = contacts[contactIndex].substring(pipeIndex + 1);
+        System.out.println("Current contact: " + name + " | " + phone);
+        
+        // Ask what to update
+        System.out.println("\nWhat do you want to update?");
+        System.out.println("a - Update name");
+        System.out.println("b - Update phone number");
+        System.out.print("Choose an option (a/b): ");
+        
+        String choice = scanner.nextLine().toLowerCase();
+        
+        switch (choice) {
+            case "a":
+                System.out.print("Enter new name: ");
+                String newName = scanner.nextLine();
+                if (!newName.isEmpty()) {
+                    contacts[contactIndex] = newName + "|" + phone;
+                    System.out.println("Name updated successfully.");
+                } else {
+                    System.out.println("Name cannot be empty.");
+                }
+                break;
+            case "b":
+                System.out.print("Enter new phone number: ");
+                String newPhone = scanner.nextLine();
+                if (!newPhone.isEmpty()) {
+                    contacts[contactIndex] = name + "|" + newPhone;
+                    System.out.println("Phone number updated successfully.");
+                } else {
+                    System.out.println("Phone number cannot be empty.");
+                }
+                break;
+            default:
+                System.out.println("Invalid option. Please choose 'a' or 'b'.");
+        }
     }
     public static void sortContacts() {
         // Simple bubble sort implementation
