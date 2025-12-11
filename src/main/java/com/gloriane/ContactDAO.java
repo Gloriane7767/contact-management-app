@@ -256,5 +256,16 @@ public class ContactDAO {
             }
         }
     }
+
+    // Test method to show before and after sorting
+    public static void testSorting() {
+        System.out.println("=== BEFORE SORTING ===");
+        displayAllContacts();
+        
+        sortContacts();
+        
+        System.out.println("\n=== AFTER SORTING ===");
+        displayAllContacts();
+    }
 }
 

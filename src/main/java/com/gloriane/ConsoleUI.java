@@ -95,8 +95,8 @@ public static void updateContact() {
     }
 
     public static void sortContacts() {
-        ContactDAO.sortContacts();
-        System.out.println("Contacts sorted successfully.");
+        ContactDAO.testSorting();
+        System.out.println("\nContacts sorted successfully!");
     }
 }
 
