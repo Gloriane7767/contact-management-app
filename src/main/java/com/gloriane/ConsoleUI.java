@@ -10,13 +10,11 @@ public static Scanner scanner = new Scanner(System.in);
 public static void printMenu() {
     System.out.println(" === Contact Management ===");
     System.out.println("1. Add Contact");
-    System.out.println("2. Search by Name");
-    System.out.println("3. Search by Phone Number");
-    System.out.println("4. Display All Contacts");
-    System.out.println("5. Delete Contact");
-    System.out.println("6. Update Contact");
-    System.out.println("7. Sort Contacts");
-    System.out.println("8. Sort Contacts");
+    System.out.println("2. Search Contact");
+    System.out.println("3. Display All Contacts");
+    System.out.println("4. Delete Contact");
+    System.out.println("5. Update Contact");
+    System.out.println("6. Sort Contacts");
     System.out.println("0. Exit");
     System.out.print("Choose an option: ");
 }
@@ -33,21 +31,18 @@ public static void printMenu() {
                     addContact();
                     break;
                 case "2":
-                    searchByName();
+                    searchContact();
                     break;
                 case "3":
-                    searchByNumber();
-                    break;
-                case "4":
                     displayAllContacts();
                     break;
-                case "5":
+                case "4":
                     deleteContact();
                     break;
-                case "6":
+                case "5":
                     updateContact();
                     break;
-                case "7":
+                case "6":
                     sortContacts();
                     break;
                 case "0":
@@ -62,9 +57,9 @@ public static void printMenu() {
 
 
     public static void addContact() {
-        // TODO: Implement add contact functionality
         System.out.println("Enter name: ");
         String name = scanner.nextLine();
+
         System.out.println("Enter phone number: ");
         String phoneNumber = scanner.nextLine();
 
@@ -72,21 +67,12 @@ public static void printMenu() {
         if (added) {
             System.out.println("Contact added successfully.");
         } else {
-            System.out.println("Failed to add contact. Contact with this name already exists.");
+            System.out.println("Failed to add contact.");
         }
     }
 
-    public static void searchByName() {
-        // TODO: Implement search by name functionality
-        System.out.println("Enter name to search: ");
-        String name = scanner.nextLine();
-        ContactDAO.searchByName(name);  // Call static method directly
-    }
-
-    public static void searchByNumber() {
-        System.out.println("Enter phone number to search: ");
-        String phoneNumber = scanner.nextLine();
-        ContactDAO.searchByNumber(phoneNumber);
+    public static void searchContact() {
+        ContactDAO.searchContact(scanner);
     }
 
     public static void displayAllContacts(){
@@ -122,7 +108,6 @@ public static void updateContact() {
         System.out.println("Contacts sorted successfully.");
     }
 }
-
 
 
 

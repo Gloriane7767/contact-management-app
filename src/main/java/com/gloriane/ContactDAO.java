@@ -41,14 +41,39 @@ public class ContactDAO {
         contacts = newArray;
     }
 
-    // Search using loops
-    public static void searchByName(String name) {
+    // Search contact with option to choose by name or number
+    public static void searchContact(java.util.Scanner scanner) {
+        System.out.println("\nSearch Options:");
+        System.out.println("a - Search by name");
+        System.out.println("b - Search by phone number");
+        System.out.print("Choose an option (a/b): ");
+        
+        String choice = scanner.nextLine().toLowerCase();
+        
+        switch (choice) {
+            case "a":
+                System.out.print("Enter name to search: ");
+                String name = scanner.nextLine();
+                searchByNameHelper(name);
+                break;
+            case "b":
+                System.out.print("Enter phone number to search: ");
+                String phoneNumber = scanner.nextLine();
+                searchByNumber(phoneNumber);
+                break;
+            default:
+                System.out.println("Invalid option. Please choose 'a' or 'b'.");
+        }
+    }
+
+    // Helper method for searching by name
+    private static void searchByNameHelper(String name) {
         if (name.isEmpty()) {
             System.out.println("Search name cannot be empty.");
             return;
         }
 
-    boolean found = false;
+        boolean found = false;
         for (int i = 0; i < size; i++) {
             int pipeIndex = contacts[i].indexOf('|');
             String contactName = contacts[i].substring(0, pipeIndex);
@@ -59,7 +84,7 @@ public class ContactDAO {
             }
         }
 
-    if (!found) {
+        if (!found) {
             System.out.println("No contacts found with the name: " + name);
         }
     }
